@@ -12,6 +12,9 @@ class ProviderA extends StatelessWidget {
       ),
       body: Consumer<PeriodicProvider>(
         builder: (context, provider, button) {
+
+          print('Beep from A');
+
           return Padding(
             padding: const EdgeInsets.all(16.0),
             child: Column(

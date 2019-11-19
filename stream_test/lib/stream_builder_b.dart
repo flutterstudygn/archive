@@ -16,6 +16,9 @@ class StreamBuilderB extends StatelessWidget {
           initialData: _initialNumber,
           stream: globalPeriodic,
           builder: (context, snapshot) {
+
+            print('Beep from B');
+
             return Padding(
               padding: const EdgeInsets.all(16.0),
               child: Column(
