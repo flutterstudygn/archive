@@ -8,4 +8,4 @@
 
 ## Component
 * [Infinite Scroll ListView](./post/infinite_scroll_listview__191113.md)
-* [Image Editor](https://github.com/flutterstudygn/image_editor) : image pick, crop, filter
+* [multiple_image_selector](https://github.com/flutterstudygn/multiple_image_selector) : image pick, crop, filter
