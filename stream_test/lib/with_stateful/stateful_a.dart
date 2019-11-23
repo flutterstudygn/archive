@@ -16,15 +16,13 @@ class _StatefulAState extends State<StatefulA> {
 
   int _seconds = 0;
 
-  bool _covered = false;
-
   @override
   void initState() {
     super.initState();
     print('[${StatefulA.tag}] on initState');
     _stopwatchListener = stopwatch.listen(
-      (i) => setState(() {
-        _seconds = i;
+      (_) => setState(() {
+        _seconds++;
       }),
     );
     print('[${StatefulA.tag}] start listening stopwatch');
@@ -41,15 +39,6 @@ class _StatefulAState extends State<StatefulA> {
   @override
   Widget build(BuildContext context) {
     print('[${StatefulA.tag}] build called');
-
-    // 현재 페이지가 가려졌다면 바로 빈 Widget인 SizedBox를 return한다.
-    // 이 처리부분이 없으면 Flutter의 framework는 계속 이하 Widget을 그리게 되고
-    // print('Tick from [$tag]')도 출력하게 된다.
-    // 만약 해당 코드가 로그가 아니라 시계 소리 출력이었다면 문제가 된다.
-    // (혹은 유료 API call이라거나...)
-    if (_covered) {
-      return SizedBox();
-    }
 
     print('Tick from [${StatefulA.tag}]');
 
@@ -68,15 +57,21 @@ class _StatefulAState extends State<StatefulA> {
               textAlign: TextAlign.center,
             ),
             RaisedButton(
-              onPressed: () async {
-                _covered = true;
-                await Navigator.of(context).push(
+              onPressed: () => _stopwatchListener.pause(
+                Navigator.of(context)
+                    .push(
                   MaterialPageRoute(
                     builder: (_) => StatefulB(_seconds),
                   ),
-                );
-                _covered = false;
-              },
+                )
+                    .then(
+                  (seconds) {
+                    setState(() {
+                      _seconds = seconds;
+                    });
+                  },
+                ),
+              ),
               child: Text(
                 'Push StatefulB',
               ),

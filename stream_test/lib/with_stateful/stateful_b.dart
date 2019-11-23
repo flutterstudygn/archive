@@ -17,15 +17,17 @@ class StatefulB extends StatefulWidget {
 class _StatefulBState extends State<StatefulB> {
   StreamSubscription _stopwatchListener;
 
-  int _seconds = 0;
+  int _seconds;
 
   @override
   void initState() {
     super.initState();
+    _seconds = widget._initSeconds;
+
     print('[${StatefulB.tag}] on initState');
     _stopwatchListener = stopwatch.listen(
       (i) => setState(() {
-        _seconds = i;
+        _seconds++;
       }),
     );
     print('[${StatefulB.tag}] start listening stopwatch');
@@ -43,27 +45,35 @@ class _StatefulBState extends State<StatefulB> {
   Widget build(BuildContext context) {
     print('[${StatefulB.tag}] build called');
 
-    return Scaffold(
-      appBar: AppBar(
-        title: Text('StatefulB'),
-      ),
-      body: Padding(
-        padding: const EdgeInsets.all(16.0),
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-          crossAxisAlignment: CrossAxisAlignment.stretch,
-          children: <Widget>[
-            Text(
-              (widget._initSeconds + _seconds).toString(),
-              textAlign: TextAlign.center,
-            ),
-            RaisedButton(
-              onPressed: () => Navigator.of(context).pop(),
-              child: Text(
-                'Pop this page',
+    return WillPopScope(
+      // 버튼 이외의 Android OS 화면 밑의 Navigation Bar나 App bar의 back button으로
+      // pop하였을 경우의 처리는 따로 해주어야한다.
+      onWillPop: () async {
+        Navigator.of(context).pop(_seconds);
+        return false;
+      },
+      child: Scaffold(
+        appBar: AppBar(
+          title: Text('StatefulB'),
+        ),
+        body: Padding(
+          padding: const EdgeInsets.all(16.0),
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+            crossAxisAlignment: CrossAxisAlignment.stretch,
+            children: <Widget>[
+              Text(
+                _seconds?.toString() ?? widget._initSeconds.toString(),
+                textAlign: TextAlign.center,
               ),
-            )
-          ],
+              RaisedButton(
+                onPressed: () => Navigator.of(context).pop(_seconds),
+                child: Text(
+                  'Pop this page',
+                ),
+              )
+            ],
+          ),
         ),
       ),
     );
