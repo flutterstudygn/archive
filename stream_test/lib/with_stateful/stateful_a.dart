@@ -1,8 +1,8 @@
 import 'dart:async';
 
 import 'package:flutter/material.dart';
-import 'package:stream_test/with_stateful/stateful_b.dart';
 import 'package:stream_test/stream.dart';
+import 'package:stream_test/with_stateful/stateful_b.dart';
 
 class StatefulA extends StatefulWidget {
   static const tag = 'StatefulA';

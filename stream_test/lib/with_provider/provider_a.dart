@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'package:stream_test/with_provider/bloc/stopwatch_bloc.dart';
 import 'package:stream_test/with_provider/bloc/page_navigation_bloc.dart';
+import 'package:stream_test/with_provider/bloc/stopwatch_bloc.dart';
 import 'package:stream_test/with_provider/provider_b.dart';
 
 class ProviderA extends StatelessWidget {
@@ -35,7 +35,7 @@ class ProviderA extends StatelessWidget {
 
             // 현재 페이지가 가려졌다면 바로 빈 Widget인 SizedBox를 return한다.
             // 이 처리부분이 없으면 Flutter의 framework는 계속 이하 Widget을 그리게 되고
-            // print('Tick from [$tag]')도 출력하게 된다. 
+            // print('Tick from [$tag]')도 출력하게 된다.
             // 만약 해당 코드가 로그가 아니라 시계 소리 출력이었다면 문제가 된다.
             // (혹은 유료 API call이라거나...)
             if (pageNavigationBloc.visibility == PageVisibility.covered) {

@@ -18,7 +18,7 @@ class ProviderB extends StatelessWidget {
         title: Text('ProviderB'),
       ),
       // .value 생성자를 사용한 이유는 일단 기존 StopwatchBloc의 값을 계속 사용하려면
-      // 같은 인스턴스를 리스닝해야하고 .value 생성자의 경우 기본 생성자와 달리 
+      // 같은 인스턴스를 리스닝해야하고 .value 생성자의 경우 기본 생성자와 달리
       // Provider가 dispose될 때에 ChangeNotifier의 dispose가 불리지 않기 때문이다.
       body: ChangeNotifierProvider<StopwatchBloc>.value(
         value: _periodicBloc,
