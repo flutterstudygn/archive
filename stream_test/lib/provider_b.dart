@@ -1,24 +1,32 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'package:stream_test/streams.dart';
+import 'package:stream_test/bloc/stopwatch_bloc.dart';
 
 class ProviderB extends StatelessWidget {
-  final PeriodicProvider _provider;
+  static const tag = 'ProviderB';
 
-  const ProviderB(this._provider, {Key key}) : super(key: key);
+  final StopwatchBloc _periodicBloc;
+
+  const ProviderB(this._periodicBloc, {Key key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
+    print('[$tag] on builder called');
+
     return Scaffold(
       appBar: AppBar(
         title: Text('ProviderB'),
       ),
-      body: ChangeNotifierProvider<PeriodicProvider>.value(
-        value: _provider,
-        child: Consumer<PeriodicProvider>(
-          builder: (context, provider, buttonAndText) {
+      // .value 생성자를 사용한 이유는 일단 기존 StopwatchBloc의 값을 계속 사용하려면
+      // 같은 인스턴스를 리스닝해야하고 .value 생성자의 경우 기본 생성자와 달리 
+      // Provider가 dispose될 때에 ChangeNotifier의 dispose가 불리지 않기 때문이다.
+      body: ChangeNotifierProvider<StopwatchBloc>.value(
+        value: _periodicBloc,
+        child: Consumer<StopwatchBloc>(
+          builder: (context, bloc, buttonAndText) {
+            print('[$tag] on consumer builder called');
 
-            print('Beep from B');
+            print('Tock from [$tag]');
 
             return Padding(
               padding: const EdgeInsets.all(16.0),
@@ -27,7 +35,7 @@ class ProviderB extends StatelessWidget {
                 crossAxisAlignment: CrossAxisAlignment.stretch,
                 children: <Widget>[
                   Text(
-                    provider.num.toString(),
+                    bloc.seconds.toString(),
                     textAlign: TextAlign.center,
                   ),
                   buttonAndText
@@ -46,7 +54,7 @@ class ProviderB extends StatelessWidget {
                 ),
               ),
               Text(
-                  '현재 ProviderB에 가려져있는 Widget인 ProviderA또한 PeriodicProvider의 notifyListeners가 호출될 떄마다 build함수가 실행되고있다.'),
+                  '현재 ProviderB에 가려져있는 Widget인 ProviderA또한 StopwatchBloc의 notifyListeners가 호출될 때마다 build함수가 실행되고있다.'),
             ],
           ),
         ),

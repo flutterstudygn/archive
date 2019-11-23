@@ -1,8 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:provider/provider.dart';
 import 'package:stream_test/provider_a.dart';
+import 'package:stream_test/stateful_a.dart';
 import 'package:stream_test/stream_builder_a.dart';
-import 'package:stream_test/streams.dart';
 
 void main() => runApp(MyApp());
 
@@ -41,6 +40,12 @@ class _RootPage extends StatelessWidget {
           children: <Widget>[
             RaisedButton(
               onPressed: () => Navigator.of(context).push(
+                MaterialPageRoute(builder: (_) => StatefulA()),
+              ),
+              child: Text('Stateful'),
+            ),
+            RaisedButton(
+              onPressed: () => Navigator.of(context).push(
                 MaterialPageRoute(
                   builder: (_) => StreamBuilderA(),
                 ),
@@ -49,12 +54,7 @@ class _RootPage extends StatelessWidget {
             ),
             RaisedButton(
               onPressed: () => Navigator.of(context).push(
-                MaterialPageRoute(
-                  builder: (_) => ChangeNotifierProvider<PeriodicProvider>(
-                    builder: (_) => PeriodicProvider(),
-                    child: ProviderA(),
-                  ),
-                ),
+                MaterialPageRoute(builder: (_) => ProviderA()),
               ),
               child: Text('Provider'),
             ),
