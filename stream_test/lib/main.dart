@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:stream_test/provider_a.dart';
-import 'package:stream_test/stateful_a.dart';
-import 'package:stream_test/stream_builder_a.dart';
+import 'package:stream_test/with_provider/provider_a.dart';
+import 'package:stream_test/with_stateful/stateful_a.dart';
+import 'package:stream_test/with_stream_builder/stream_builder_a.dart';
 
 void main() => runApp(MyApp());
 

@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'package:stream_test/bloc/stopwatch_bloc.dart';
-import 'package:stream_test/bloc/page_navigation_bloc.dart';
-import 'package:stream_test/provider_b.dart';
+import 'package:stream_test/with_provider/bloc/stopwatch_bloc.dart';
+import 'package:stream_test/with_provider/bloc/page_navigation_bloc.dart';
+import 'package:stream_test/with_provider/provider_b.dart';
 
 class ProviderA extends StatelessWidget {
   static const tag = 'ProviderA';

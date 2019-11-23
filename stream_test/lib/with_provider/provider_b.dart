@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'package:stream_test/bloc/stopwatch_bloc.dart';
+import 'package:stream_test/with_provider/bloc/stopwatch_bloc.dart';
 
 class ProviderB extends StatelessWidget {
   static const tag = 'ProviderB';

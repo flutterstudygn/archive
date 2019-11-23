@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:stream_test/stream.dart';
-import 'package:stream_test/stream_builder_b.dart';
+import 'package:stream_test/with_stream_builder/stream_builder_b.dart';
 
 class StreamBuilderA extends StatelessWidget {
   static const tag = 'StreamBuilderA';
