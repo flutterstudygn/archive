@@ -53,8 +53,6 @@ class ProviderB extends StatelessWidget {
                   'Pop this page',
                 ),
               ),
-              Text(
-                  '현재 ProviderB에 가려져있는 Widget인 ProviderA또한 StopwatchBloc의 notifyListeners가 호출될 때마다 build함수가 실행되고있다.'),
             ],
           ),
         ),

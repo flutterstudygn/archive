@@ -22,7 +22,7 @@ class StopwatchBloc extends ChangeNotifier {
   void dispose() {
     print('[$tag] on disposed');
     _stopwatchListener.cancel();
-    print('[$tag] periodicSubscription canceled');
+    print('[$tag] _stopwatchListener canceled');
     print('[$tag] disposed');
     super.dispose();
   }
