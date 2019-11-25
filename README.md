@@ -5,7 +5,7 @@
 * [State management (overall)](./post/state_management__191114.md)
 * [Json and serialization](./post/json_serialization__191107.md)
 * [State, StatelessWidget, StatefulWidget](./post/flutter_meetup_2_state.md) *(@Flutter Meetup#2)*
-
+* [Stream and Widget example](https://github.com/flutterstudygn/stream_widget_example)
 
 ## Component
 * [Infinite Scroll ListView](./post/infinite_scroll_listview__191113.md)
